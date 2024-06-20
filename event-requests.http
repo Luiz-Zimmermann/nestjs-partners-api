@@ -1,0 +1,31 @@
+GET http://localhost:3000/events
+
+###
+GET http://localhost:3000/events/{{eventId}}
+
+###
+# @name createEvent
+POST  http://localhost:3000/events
+Content-Type: application/json
+
+{
+    "name": "ACDC Show",
+    "description": "This is a show of ACDC band",
+    "date": "2024-07-21T18:00:00Z",
+    "price": 200
+}
+
+###
+@eventId = {{ createEvent.response.body.id }}
+
+###
+PATCH  http://localhost:3000/events/{{eventId}}
+Content-Type: application/json
+
+{
+    "name": "ACDC First Show",
+    "description": "This is the first show of ACDC band"
+}
+
+###
+DELETE http://localhost:3000/events/{{eventId}}
